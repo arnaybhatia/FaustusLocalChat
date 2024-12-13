@@ -1,20 +1,31 @@
 name: faustus
 channels:
   - conda-forge
+  - https://repo.anaconda.com/pkgs/main
+  - https://repo.anaconda.com/pkgs/r
 dependencies:
-  - bzip2
-  - ca-certificates
-  - libffi
-  - ncurses
-  - openssl
-  - pip
-  - python=3.10
-  - readline
-  - setuptools
-  - sqlite
-  - tk
-  - xz
-  - zlib
+  - bzip2=1.0.8
+  - ca-certificates=2024.8.30
+  - libffi=3.4.2
+  - liblzma=5.6.3
+  - liblzma-devel=5.6.3
+  - libsqlite=3.47.2
+  - libuuid=2.38.1
+  - libzlib=1.3.1
+  - ncurses=6.5
+  - openssl=3.4.0
+  - pip=24.3.1
+  - python=3.10.16
+  - readline=8.2
+  - setuptools=75.6.0
+  - sqlite=3.47.2
+  - tk=8.6.13
+  - tzdata=2024b
+  - wheel=0.45.1
+  - xz=5.6.3
+  - xz-gpl-tools=5.6.3
+  - xz-tools=5.6.3
+  - zlib=1.3.1
   - pip:
       - certifi==2024.8.30
       - charset-normalizer==3.4.0
@@ -28,13 +39,18 @@ dependencies:
       - mpmath==1.3.0
       - networkx==3.4.2
       - numba==0.60.0
-      - numpy==2.0.2
+      - numpy==1.26.4
       - openai-whisper==20240930
+      - pyaudio==0.2.14
       - regex==2024.11.6
       - requests==2.32.3
-      - sympy==1.13.3
+      - six==1.17.0
+      - speechrecognition==3.12.0
+      - sympy==1.13.1
       - tiktoken==0.8.0
-      - torch==2.2.2
+      - torch==2.5.1
       - tqdm==4.67.1
       - typing-extensions==4.12.2
       - urllib3==2.2.3
+      - whisper==1.1.10
+prefix: /home/strifedeeno/miniconda3/envs/faustus
