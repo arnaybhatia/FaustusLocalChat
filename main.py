@@ -1,14 +1,19 @@
-import threading
+import argparse
 from RT_STT import start_listening
-from screen import start_screen_capture
+from web_app import app, start_background_tasks
 
 def main():
-    # Create and start the screen capture thread
-    screen_thread = threading.Thread(target=start_screen_capture, daemon=True)
-    screen_thread.start()
+    parser = argparse.ArgumentParser(description='Start Faustus Local Chat')
+    parser.add_argument('--mode', choices=['web', 'voice'],
+                       default='web', help='Choose interface mode')
 
-    # Start the voice recognition in the main thread
-    start_listening()
+    args = parser.parse_args()
+
+    if args.mode == 'web':
+        start_background_tasks()  # This starts screen capture
+        app.run(debug=True, port=5000)
+    elif args.mode == 'voice':
+        start_listening()
 
 if __name__ == "__main__":
     main()
