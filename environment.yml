@@ -8,7 +8,6 @@ dependencies:
   - python
   - setuptools
   - xz
-  - liblzma
   - ca-certificates
   - sqlite
   - bzip2
