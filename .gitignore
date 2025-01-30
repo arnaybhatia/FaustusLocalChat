@@ -1,1 +1,4 @@
 /models
+/screencaptures/*
+/__pycache__
+.DS_Store
