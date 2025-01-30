@@ -6,7 +6,6 @@ channels:
 dependencies:
   - wheel
   - python
-  - xz-gpl-tools
   - setuptools
   - xz
   - liblzma
@@ -14,12 +13,8 @@ dependencies:
   - sqlite
   - bzip2
   - libffi
-  - libzlib
   - ncurses
-  - libsqlite
   - tzdata
-  - liblzma-devel
-  - xz-tools
   - libuuid
   - pip
   - zlib
