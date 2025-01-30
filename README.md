@@ -70,23 +70,3 @@ The application uses default settings that should work for most setups:
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-```
-
-This README.md provides:
-- Clear project description
-- Installation instructions
-- Usage guide
-- Project structure
-- Configuration details
-- Contributing guidelines
-- License information
-
-You may want to customize:
-- The repository URL
-- Specific version requirements
-- Any additional setup steps specific to your environment
-- License type if different from MIT
