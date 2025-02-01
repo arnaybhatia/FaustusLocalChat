@@ -1,20 +1,21 @@
 # Faustus Local Chat
 
-A real-time speech-to-text application that uses Whisper for transcription and LMStudio for local LLM interactions. The application listens for voice input and responds when addressed as "Faustus".
+A versatile chat assistant with both voice and web interfaces that can run completely locally or leverage OpenAI's GPT-4V for enhanced capabilities. The voice interface uses Whisper for transcription and responds when addressed as "John".
 
 ## Features
 
 - Real-time speech recognition using OpenAI's Whisper model
-- Local LLM integration via LMStudio
-- Continuous listening and response capability
+- Choice between local LLM or OpenAI GPT-4V integration  
+- Web interface with real-time screen context
+- Voice interface with continuous listening
 - Low latency voice transcription
-- No cloud API dependencies
+- Screen capture and analysis capabilities
 
 ## Prerequisites
 
 - Python 3.10 or higher
-- LMStudio running locally on port 1234
-- Working microphone
+- Working microphone (for voice interface)
+- OpenAI API key (optional)
 
 ## Installation
 
@@ -24,48 +25,63 @@ git clone [repository-url]
 cd FaustusLocalChat
 ```
 
-2. Install required packages:
+2. Create and activate conda environment:
 ```bash
-pip install openai-python
-pip install whisper
-pip install speechrecognition
-pip install numpy
+conda env create -f environment.yml
+conda activate faustus
 ```
 
-3. Ensure LMStudio is running locally with the following settings:
-   - Server running on port 1234
-   - Model loaded (preferably Meta-Llama2)
+3. Install required packages:
+```bash
+pip install -r requirements.txt
+```
+
+4. Set up OpenAI API key (optional):
+Create a .env file with:
+```
+OPENAI_API_KEY=your_key_here
+```
 
 ## Usage
 
-1. Start LMStudio and ensure the local server is running
-
-2. Run the application:
+1. Start the web interface:
 ```bash
-python RT_STT.py
+python main.py --mode web
 ```
 
-3. Speak to Faustus:
+2. Start the voice interface:
+```bash
+python main.py --mode voice
+```
+
+3. Using voice interface:
    - The application will continuously listen for speech
-   - Say "Faustus" followed by your question/command
+   - Say "Hey John" or "Hello John" followed by your question
    - Wait for the response
 
 4. To exit, press Ctrl+C
 
 ## Project Structure
 
-- `RT_STT.py` - Main application file handling speech recognition and transcription
-- `api.py` - LLM integration with LMStudio
-- `.gitignore` - Git ignore file
-- `README.md` - Project documentation
+- `main.py` - Main application entry point
+- `RT_STT.py` - Voice interface and speech recognition
+- `web_app.py` - Flask web interface
+- `api.py` - LLM integration (local or OpenAI)
+- `screen.py` - Screen capture functionality
+- `TTS.py` - Text-to-speech engine
 
 ## Configuration
 
-The application uses default settings that should work for most setups:
-- Speech recognition energy threshold: 300
+Voice interface settings:
 - Dynamic energy threshold: Enabled
-- Pause threshold: 1.0 seconds
+- Pause threshold: 2.0 seconds
 - Phrase threshold: 0.3 seconds
+- Non-speaking duration: 0.5 seconds
+
+Screen capture settings:
+- Resolution: 800x600
+- Capture interval: 0.2 seconds
+- PNG compression quality: 85
 
 ## Contributing
 
