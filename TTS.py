@@ -19,8 +19,8 @@ class TextToSpeech:
         try:
             audio_iter = self.pipeline(
                 text,
-                voice='af_bella',
-                speed=1.0,
+                voice='af_heart',
+                speed=1,  # Changed from 1.0 to 1 to match expected type
                 split_pattern=r'\n+'
             )
 

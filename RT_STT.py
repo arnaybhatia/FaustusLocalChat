@@ -3,24 +3,25 @@ import whisper
 import numpy as np
 from api import get_response
 from TTS import TextToSpeech
-import queue
 
 def start_listening(stt_queue=None):
     try:
-        model = whisper.load_model("base")
+        model = whisper.load_model("turbo")
         tts = TextToSpeech()
 
-        # Initialize the recognizer
+        # Initialize the recognizer with more lenient settings
         r = sr.Recognizer()
-        r.energy_threshold = 300
+        r.energy_threshold = 150  # Lower threshold for better sensitivity
         r.dynamic_energy_threshold = True
-        r.pause_threshold = 1.0
+        r.pause_threshold = 2.0  # Shorter pause threshold
         r.phrase_threshold = 0.3
+        r.non_speaking_duration = 1.0  # Shorter duration for non-speaking
 
         # Use the default microphone as the source
         with sr.Microphone(sample_rate=16000) as source:
             print("Adjusting for ambient noise... Please wait...")
-            r.adjust_for_ambient_noise(source, duration=2)
+            # Longer ambient noise adjustment
+            r.adjust_for_ambient_noise(source, duration=5)
             print(f"Energy threshold set to: {r.energy_threshold}")
 
             print("\nReady to listen! Say 'Hey John' to start...")
@@ -29,7 +30,8 @@ def start_listening(stt_queue=None):
             try:
                 while True:
                     try:
-                        audio = r.listen(source)
+                        # Use listen_in_background for continuous listening
+                        audio = r.listen(source, timeout=None, phrase_time_limit=None)
                         audio_data = audio.get_wav_data()
                         data_s16 = np.frombuffer(audio_data, dtype=np.int16, count=len(audio_data)//2, offset=0)
                         float_data = data_s16.astype(np.float32, order='C') / 32768.0
